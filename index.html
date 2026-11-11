@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f3ef" />
+    <meta name="description" content="A quiet, focused workout companion for your weekly split." />
+    <title>Form — your training day</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell" aria-label="Workout tracker">
+      <div class="status-bar" aria-hidden="true">
+        <span class="status-time">9:41</span>
+        <span class="dynamic-island"></span>
+        <span class="status-icons"><svg viewBox="0 0 56 18"><path d="M2 13.5h3v2H2zM7 10.5h3v5H7zM12 7h3v8.5h-3zM17 3.5h3v12h-3zM27 6c4-4 10-4 14 0M30 9c2.3-2.3 5.7-2.3 8 0M33.4 12.3a1 1 0 0 1 1.2 0M45 5h9a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5h-9a1.5 1.5 0 0 1-1.5-1.5v-8A1.5 1.5 0 0 1 45 5Zm11.5 3.2H58v4.6h-1.5Z"/></svg></span>
+      </div>
+
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Form home"><span class="brand-mark">f.</span><span>form<span class="brand-period">.</span></span></a>
+        <button class="date-button" id="date-button" aria-label="Today’s date"><span class="date-dot"></span><span id="today-label">TODAY</span><span class="date-chevron">⌄</span></button>
+      </header>
+
+      <section class="day-section" aria-label="Choose a training day">
+        <div class="day-heading">
+          <div><div class="eyebrow" id="week-label">YOUR WEEK</div><h1 id="day-title">Monday<span class="heading-period">.</span></h1></div>
+          <div class="day-subtitle" id="day-subtitle">UPPER BODY <span>·</span> 24 MOVES</div>
+        </div>
+        <nav class="day-picker" id="day-picker" aria-label="Weekday"></nav>
+      </section>
+
+      <section class="workout-panel" id="workout-panel" aria-live="polite">
+        <div class="panel-topline"><span class="panel-kicker" id="panel-kicker">TODAY’S SESSION</span><span class="panel-count" id="panel-count">01 <i>/ 24</i></span></div>
+
+        <div class="deck-wrap" id="deck-wrap">
+          <div class="deck-shadow deck-shadow-two"></div>
+          <div class="deck-shadow deck-shadow-one"></div>
+          <article class="exercise-card" id="exercise-card">
+            <div class="exercise-art" id="exercise-art">
+              <div class="art-orb orb-one"></div><div class="art-orb orb-two"></div>
+              <div class="art-label"><span class="live-dot"></span><span>TARGET MUSCLES</span></div>
+              <div class="target-copy"><span class="target-overline">FOCUS AREA</span><strong id="target-title">CHEST</strong><span class="target-caption" id="target-caption">Pectoralis major</span></div>
+              <svg class="anatomy" viewBox="0 0 190 225" role="img" aria-label="Anatomical muscle focus illustration">
+                <defs><linearGradient id="bodyFill" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#d9d4ca"/><stop offset="1" stop-color="#aaa69f"/></linearGradient><radialGradient id="muscleFill"><stop stop-color="#ffbc79"/><stop offset="1" stop-color="#ef8153"/></radialGradient></defs>
+                <g class="body-shape" fill="url(#bodyFill)" stroke="#88867f" stroke-width="1.2" stroke-linejoin="round">
+                  <circle cx="95" cy="22" r="15"/><path d="M82 39 68 44 57 51 60 78 66 107 73 122 72 154 67 211 79 213 94 163 99 163 113 213 126 211 118 154 117 122 124 107 130 78 133 51 122 44 108 39 103 47 87 47Z"/>
+                  <path d="m67 48-13 6-8 34 4 33 9 27 8-3-4-29 5-29 9-21Zm56 0 13 6 8 34-4 33-9 27-8-3 4-29-5-29-9-21Z"/>
+                </g>
+                <g class="muscle-zone zone-chest"><path d="M70 61q12-8 24 0v16q-13 8-24 0Zm25 0q12-8 24 0v16q-13 8-24 0Z"/></g>
+                <g class="muscle-zone zone-back"><path d="m76 52 17 5-2 29-16-8Zm20 5 17-5 1 26-16 8Z"/></g>
+                <g class="muscle-zone zone-shoulders"><ellipse cx="68" cy="54" rx="9" ry="10"/><ellipse cx="122" cy="54" rx="9" ry="10"/></g>
+                <g class="muscle-zone zone-biceps"><path d="m59 68 8-3 7 29-7 4Zm57-3 8 3-8 30-7-4Z"/></g>
+                <g class="muscle-zone zone-triceps"><path d="m54 69 5-1 6 28-6 3Zm77-1 5 1-5 30-6-3Z"/></g>
+                <g class="muscle-zone zone-forearms"><path d="m49 98 8-2 8 28-7 2Zm84-2 8 2-9 28-7-2Z"/></g>
+                <g class="muscle-zone zone-legs"><path d="m75 125 18 3-4 31-13 1Zm22 3 18-3 1 32-13-1Z"/></g>
+                <g class="muscle-zone zone-glutes"><ellipse cx="83" cy="113" rx="10" ry="8"/><ellipse cx="107" cy="113" rx="10" ry="8"/></g>
+              </svg>
+              <span class="art-index" id="art-index">01 <span>—</span> 24</span>
+            </div>
+            <div class="exercise-content">
+              <div class="exercise-meta"><span class="category-pill" id="exercise-category">CHEST</span><span class="set-total">3 SETS</span></div>
+              <h2 id="exercise-name">Dumbbell chest press</h2>
+              <p class="exercise-description" id="exercise-description">Main compound move for overall pec mass.</p>
+              <div class="weight-row" id="weight-row"><span class="weight-icon">↗</span><span id="exercise-weight">17.5 kg <i>›</i> 22.5 kg <i>›</i> 20 kg</span></div>
+              <div class="set-row" aria-label="Mark completed sets">
+                <span class="set-row-label">YOUR SETS</span>
+                <div class="set-controls" id="set-controls"></div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="progress-row"><span id="progress-label">0 OF 24 EXERCISES</span><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div><span id="progress-percent">0%</span></div>
+        <div class="swipe-hint" id="swipe-hint"><span class="hint-spark">✳</span> COMPLETE ALL 3 SETS TO CONTINUE</div>
+
+        <div class="rest-card hidden" id="rest-card">
+          <div class="rest-icon">☼</div><span class="eyebrow">A DAY TO RESET</span><h2>Rest well.<br />Come back stronger.</h2><p>No exercises scheduled for today. Give your muscles time to recover.</p><div class="rest-rule"></div><span class="rest-note">YOUR NEXT SESSION</span><strong id="next-session">TUESDAY · LOWER BODY</strong>
+        </div>
+        <div class="complete-card hidden" id="complete-card"><div class="complete-check">✓</div><span class="eyebrow">SESSION COMPLETE</span><h2>That’s a wrap.</h2><p>You showed up for yourself today. Recovery starts now.</p><div class="complete-stat"><strong id="complete-stat-count">24</strong><span>EXERCISES<br />COMPLETED</span></div></div>
+      </section>
+
+      <footer class="bottom-bar"><span class="footer-mark">f.</span><span>ONE SET AT A TIME</span><button id="reset-button" type="button" title="Reset today's progress">↺ <span>RESET</span></button></footer>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
