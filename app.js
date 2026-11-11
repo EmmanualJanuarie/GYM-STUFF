@@ -91,7 +91,7 @@ function render() {
   renderDays();
   els['day-title'].innerHTML = `${dayNames[selectedDay]}<span class="heading-period">.</span>`;
   els['today-label'].textContent = selectedDay === dayOffset ? 'TODAY' : date.toLocaleDateString('en', { month: 'short', day: 'numeric' }).toUpperCase();
-  els['week-label'].textContent = `WEEK OF ${monday.toLocaleDateString('en', { month: 'short', day: 'numeric' }).toUpperCase()}`;
+  els['week-label'].textContent = 'WEEKLY REMINDER';
   els['day-subtitle'].innerHTML = isRest ? 'REST DAY <span>·</span> RECOVER' : `${selectedDay === 0 || selectedDay === 3 ? 'UPPER BODY' : 'LOWER BODY'} <span>·</span> ${exercises.length} MOVES`;
   els['panel-kicker'].textContent = isRest ? 'YOUR WEEKLY RHYTHM' : selectedDay === dayOffset ? 'TODAY’S SESSION' : `${dayNames[selectedDay].toUpperCase()} SESSION`;
   els['deck-wrap'].classList.toggle('hidden', isRest || currentIndex >= exercises.length);
