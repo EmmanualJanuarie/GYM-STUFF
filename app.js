@@ -85,6 +85,9 @@ function selectDay(index) {
 function completedCount() { return setState.filter(sets => sets?.every(Boolean)).length; }
 
 function render() {
+  // The deck reuses one card element; clear any previous card's exit animation
+  // before painting the next exercise into it.
+  els['exercise-card'].classList.remove('leaving');
   const exercises = sessions[selectedDay] || [];
   const isRest = exercises.length === 0;
   const date = selectedDates[selectedDay];
