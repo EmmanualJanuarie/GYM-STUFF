@@ -21,13 +21,13 @@
       <section class="day-section" aria-label="Choose a training day">
         <div class="day-heading">
           <div><div class="eyebrow" id="week-label">WEEKLY REMINDER</div><h1 id="day-title">Monday<span class="heading-period">.</span></h1></div>
-          <div class="day-subtitle" id="day-subtitle">UPPER BODY <span>·</span> 24 MOVES</div>
+          <div class="day-subtitle" id="day-subtitle">JOGGING <span>·</span> 1 SESSION</div>
         </div>
         <nav class="day-picker" id="day-picker" aria-label="Weekday"></nav>
       </section>
 
       <section class="workout-panel" id="workout-panel" aria-live="polite">
-        <div class="panel-topline"><span class="panel-kicker" id="panel-kicker">TODAY’S SESSION</span><span class="panel-count" id="panel-count">01 <i>/ 24</i></span></div>
+        <div class="panel-topline"><span class="panel-kicker" id="panel-kicker">TODAY’S SESSION</span><span class="panel-count" id="panel-count">01 <i>/ 01</i></span></div>
 
         <div class="deck-wrap" id="deck-wrap">
           <div class="deck-shadow deck-shadow-two"></div>
@@ -36,7 +36,7 @@
             <div class="exercise-art" id="exercise-art">
               <div class="art-orb orb-one"></div><div class="art-orb orb-two"></div>
               <div class="art-label"><span class="live-dot"></span><span>TARGET MUSCLES</span></div>
-              <div class="target-copy"><span class="target-overline">FOCUS AREA</span><strong id="target-title">CHEST</strong><span class="target-caption" id="target-caption">Pectoralis major</span></div>
+              <div class="target-copy"><span class="target-overline">FOCUS AREA</span><strong id="target-title">ENDURANCE</strong><span class="target-caption" id="target-caption">Steady jogging</span></div>
               <svg class="anatomy" viewBox="0 0 190 225" role="img" aria-label="Anatomical muscle focus illustration">
                 <defs><linearGradient id="bodyFill" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#d9d4ca"/><stop offset="1" stop-color="#aaa69f"/></linearGradient><radialGradient id="muscleFill"><stop stop-color="#ffbc79"/><stop offset="1" stop-color="#ef8153"/></radialGradient></defs>
                 <g class="body-shape" fill="url(#bodyFill)" stroke="#88867f" stroke-width="1.2" stroke-linejoin="round">
@@ -44,6 +44,7 @@
                   <path d="m67 48-13 6-8 34 4 33 9 27 8-3-4-29 5-29 9-21Zm56 0 13 6 8 34-4 33-9 27-8-3 4-29-5-29-9-21Z"/>
                 </g>
                 <g class="muscle-zone zone-chest"><path d="M70 61q12-8 24 0v16q-13 8-24 0Zm25 0q12-8 24 0v16q-13 8-24 0Z"/></g>
+                <g class="muscle-zone zone-core"><path d="M84 81h10v8H84Zm12 0h10v8H96ZM84 91h10v8H84Zm12 0h10v8H96ZM84 101h10v8H84Zm12 0h10v8H96Z"/></g>
                 <g class="muscle-zone zone-back"><path d="m76 52 17 5-2 29-16-8Zm20 5 17-5 1 26-16 8Z"/></g>
                 <g class="muscle-zone zone-shoulders"><ellipse cx="68" cy="54" rx="9" ry="10"/><ellipse cx="122" cy="54" rx="9" ry="10"/></g>
                 <g class="muscle-zone zone-biceps"><path d="m59 68 8-3 7 29-7 4Zm57-3 8 3-8 30-7-4Z"/></g>
@@ -52,14 +53,14 @@
                 <g class="muscle-zone zone-legs"><path d="m75 125 18 3-4 31-13 1Zm22 3 18-3 1 32-13-1Z"/></g>
                 <g class="muscle-zone zone-glutes"><ellipse cx="83" cy="113" rx="10" ry="8"/><ellipse cx="107" cy="113" rx="10" ry="8"/></g>
               </svg>
-              <span class="art-index" id="art-index">01 <span>—</span> 24</span>
+              <span class="art-index" id="art-index">01 <span>—</span> 01</span>
             </div>
             <div class="exercise-content">
-              <div class="exercise-meta"><span class="category-pill" id="exercise-category">CHEST</span><span class="set-total" id="set-total">4 SETS</span></div>
-              <h2 id="exercise-name">Dumbbell chest press</h2>
-              <p class="exercise-description" id="exercise-description">Main compound move for overall pec mass.</p>
-              <div class="rep-row" id="rep-row"><span class="rep-icon">↻</span><span id="exercise-reps">8–12 reps</span></div>
-              <div class="weight-row" id="weight-row"><span class="weight-icon">↗</span><span id="exercise-weight">17.5 kg <i>›</i> 22.5 kg <i>›</i> 20 kg</span></div>
+              <div class="exercise-meta"><span class="category-pill" id="exercise-category">CARDIO</span><span class="set-total" id="set-total">SESSION</span></div>
+              <h2 id="exercise-name">20-minute jog</h2>
+              <p class="exercise-description" id="exercise-description">Keep a comfortable, steady pace for the full session.</p>
+              <div class="rep-row" id="rep-row"><span class="rep-icon">↻</span><span id="exercise-reps">20 minutes</span></div>
+              <div class="weight-row hidden" id="weight-row"><span class="weight-icon">↗</span><span id="exercise-weight"></span></div>
               <div class="set-row" aria-label="Mark completed sets">
                 <span class="set-row-label">YOUR SETS</span>
                 <div class="set-controls" id="set-controls"></div>
@@ -68,13 +69,13 @@
           </article>
         </div>
 
-        <div class="progress-row"><span id="progress-label">0 OF 24 EXERCISES</span><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div><span id="progress-percent">0%</span></div>
+        <div class="progress-row"><span id="progress-label">0 OF 1 EXERCISES</span><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div><span id="progress-percent">0%</span></div>
         <div class="swipe-hint" id="swipe-hint"><span class="hint-spark">✳</span> COMPLETE ALL 3 SETS TO CONTINUE</div>
 
         <div class="rest-card hidden" id="rest-card">
           <div class="rest-icon">☼</div><span class="eyebrow">A DAY TO RESET</span><h2>Rest well.<br />Come back stronger.</h2><p>No exercises scheduled for today. Give your muscles time to recover.</p><div class="rest-rule"></div><span class="rest-note">YOUR NEXT SESSION</span><strong id="next-session">TUESDAY · LOWER BODY</strong>
         </div>
-        <div class="complete-card hidden" id="complete-card"><div class="complete-check">✓</div><span class="eyebrow">SESSION COMPLETE</span><h2>That’s a wrap.</h2><p>You showed up for yourself today. Recovery starts now.</p><div class="complete-stat"><strong id="complete-stat-count">24</strong><span>EXERCISES<br />COMPLETED</span></div></div>
+        <div class="complete-card hidden" id="complete-card"><div class="complete-check">✓</div><span class="eyebrow">SESSION COMPLETE</span><h2>That’s a wrap.</h2><p>You showed up for yourself today. Recovery starts now.</p><div class="complete-stat"><strong id="complete-stat-count">1</strong><span>EXERCISES<br />COMPLETED</span></div></div>
       </section>
 
       <footer class="bottom-bar"><span class="footer-mark">f.</span><span>ONE SET AT A TIME</span><button id="reset-button" type="button" title="Reset today's progress">↺ <span>RESET</span></button></footer>
