@@ -26,6 +26,11 @@
         <nav class="day-picker" id="day-picker" aria-label="Weekday"></nav>
       </section>
 
+      <nav class="session-toggle" aria-label="Choose workout time">
+        <button class="session-option active" id="morning-mode" type="button" aria-pressed="true"><span class="session-time">AM</span><span class="session-name">Morning</span><span class="session-detail">Core + endurance</span></button>
+        <button class="session-option" id="afternoon-mode" type="button" aria-pressed="false"><span class="session-time">PM</span><span class="session-name">Afternoon</span><span class="session-detail">Body split</span></button>
+      </nav>
+
       <section class="workout-panel" id="workout-panel" aria-live="polite">
         <div class="panel-topline"><span class="panel-kicker" id="panel-kicker">TODAY’S SESSION</span><span class="panel-count" id="panel-count">01 <i>/ 01</i></span></div>
 
@@ -70,10 +75,10 @@
         </div>
 
         <div class="progress-row"><span id="progress-label">0 OF 1 EXERCISES</span><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div><span id="progress-percent">0%</span></div>
-        <div class="swipe-hint" id="swipe-hint"><span class="hint-spark">✳</span> COMPLETE ALL 3 SETS TO CONTINUE</div>
+        <div class="swipe-hint" id="swipe-hint"><span class="hint-spark">✳</span> COMPLETE ALL SETS TO CONTINUE</div>
 
         <div class="rest-card hidden" id="rest-card">
-          <div class="rest-icon">☼</div><span class="eyebrow">A DAY TO RESET</span><h2>Rest well.<br />Come back stronger.</h2><p>No exercises scheduled for today. Give your muscles time to recover.</p><div class="rest-rule"></div><span class="rest-note">YOUR NEXT SESSION</span><strong id="next-session">TUESDAY · LOWER BODY</strong>
+          <div class="rest-icon">☼</div><span class="eyebrow">AFTERNOON REST</span><h2>Rest well.<br />Come back stronger.</h2><p>No afternoon split today. Your morning core session is still available.</p><div class="rest-rule"></div><span class="rest-note">YOUR NEXT SESSION</span><strong id="next-session">FRIDAY · CHEST + BACK</strong>
         </div>
         <div class="complete-card hidden" id="complete-card"><div class="complete-check">✓</div><span class="eyebrow">SESSION COMPLETE</span><h2>That’s a wrap.</h2><p>You showed up for yourself today. Recovery starts now.</p><div class="complete-stat"><strong id="complete-stat-count">1</strong><span>EXERCISES<br />COMPLETED</span></div></div>
       </section>
