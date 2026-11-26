@@ -45,8 +45,8 @@ const shouldersLegs = [
   { category: 'LEGS', target: 'INNER THIGHS + GLUTES', anatomy: 'Adductors · gluteus maximus', name: 'Barbell sumo squat', sets: 3, reps: '10–12 reps', description: 'Take a wide stance with toes turned out and squat with control.', muscle: 'legs glutes' },
 ];
 
-const afternoonSessions = { 0: chestBack, 1: arms, 2: shouldersLegs, 4: chestBack, 5: arms, 6: shouldersLegs };
-const splitNames = { 0: 'CHEST + BACK', 1: 'BICEPS + TRICEPS', 2: 'SHOULDERS + LEGS', 4: 'CHEST + BACK', 5: 'BICEPS + TRICEPS', 6: 'SHOULDERS + LEGS' };
+const afternoonSessions = [chestBack, arms, shouldersLegs];
+const splitNames = ['CHEST + BACK', 'BICEPS + TRICEPS', 'SHOULDERS + LEGS'];
 const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const dayPicker = document.querySelector('#day-picker');
 const today = new Date();
@@ -54,6 +54,16 @@ const dayOffset = (today.getDay() + 6) % 7;
 const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - dayOffset);
 const dateKey = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 const selectedDates = dayNames.map((_, i) => new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + i));
+let planStartDate = monday;
+try {
+  const savedPlanStart = localStorage.getItem('form-workout-plan-start');
+  if (savedPlanStart) {
+    const [year, month, day] = savedPlanStart.split('-').map(Number);
+    planStartDate = new Date(year, month - 1, day);
+  } else {
+    localStorage.setItem('form-workout-plan-start', dateKey(monday));
+  }
+} catch { /* The cycle starts on this week's Monday if storage is unavailable. */ }
 let selectedDay = dayOffset;
 let selectedMode = 'morning';
 let currentIndex = 0;
@@ -63,11 +73,22 @@ let advanceTimer;
 const els = Object.fromEntries(['day-title','day-subtitle','today-label','week-label','panel-kicker','panel-count','deck-wrap','exercise-card','target-title','target-caption','art-index','exercise-category','exercise-name','exercise-description','set-total','exercise-reps','weight-row','exercise-weight','set-controls','progress-label','progress-fill','progress-percent','swipe-hint','rest-card','complete-card','next-session','complete-stat-count','reset-button','morning-mode','afternoon-mode'].map(id => [id, document.getElementById(id)]));
 
 function exercisesForSelection() {
-  return selectedMode === 'morning' ? morningCore : (afternoonSessions[selectedDay] || []);
+  if (getPlanDayStatus(selectedDates[selectedDay]).isRest) return [];
+  if (selectedMode === 'morning') return morningCore;
+  return afternoonSessions[getPlanDayStatus(selectedDates[selectedDay]).splitIndex];
 }
 
 function stateKey() {
-  return `form-workout-v4:${selectedMode}:${dateKey(selectedDates[selectedDay])}`;
+  return `form-workout-v5:${selectedMode}:${dateKey(selectedDates[selectedDay])}`;
+}
+
+function getPlanDayStatus(date) {
+  const startUtc = Date.UTC(planStartDate.getFullYear(), planStartDate.getMonth(), planStartDate.getDate());
+  const dateUtc = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+  const elapsedDays = Math.round((dateUtc - startUtc) / 86400000);
+  const cycleDay = ((elapsedDays % 4) + 4) % 4;
+  const workoutOrdinal = Math.floor(elapsedDays / 4) * 3 + Math.min(cycleDay, 3);
+  return { isRest: cycleDay === 3, splitIndex: ((workoutOrdinal % 3) + 3) % 3 };
 }
 
 function loadState() {
@@ -114,26 +135,28 @@ function selectMode(mode) {
 
 function completedCount() { return setState.filter(sets => sets?.every(Boolean)).length; }
 
-function nextAfternoonWorkout(fromDay) {
-  for (let offset = 1; offset <= 7; offset += 1) {
-    const candidate = (fromDay + offset) % 7;
-    if (afternoonSessions[candidate]) return candidate;
+function nextWorkoutAfter(date) {
+  for (let offset = 1; offset <= 4; offset += 1) {
+    const candidate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + offset);
+    const status = getPlanDayStatus(candidate);
+    if (!status.isRest) return { date: candidate, splitIndex: status.splitIndex };
   }
-  return 0;
+  return { date, splitIndex: 0 };
 }
 
 function render() {
   els['exercise-card'].classList.remove('leaving');
   const exercises = exercisesForSelection();
-  const isRest = selectedMode === 'afternoon' && exercises.length === 0;
   const date = selectedDates[selectedDay];
+  const dayStatus = getPlanDayStatus(date);
+  const isRest = dayStatus.isRest;
   renderDays();
   els['day-title'].innerHTML = `${dayNames[selectedDay]}<span class="heading-period">.</span>`;
   els['today-label'].textContent = selectedDay === dayOffset ? 'TODAY' : date.toLocaleDateString('en', { month: 'short', day: 'numeric' }).toUpperCase();
   els['week-label'].textContent = 'WEEKLY REMINDER';
-  const splitName = selectedMode === 'morning' ? 'MORNING CORE + ENDURANCE' : splitNames[selectedDay];
-  els['day-subtitle'].innerHTML = isRest ? 'AFTERNOON REST <span>·</span> RECOVER' : `${splitName} <span>·</span> ${exercises.length} EXERCISES`;
-  els['panel-kicker'].textContent = isRest ? 'YOUR WEEKLY RHYTHM' : selectedMode === 'morning' ? 'MORNING CORE SESSION' : 'AFTERNOON SESSION';
+  const splitName = selectedMode === 'morning' ? 'MORNING CORE + ENDURANCE' : splitNames[dayStatus.splitIndex];
+  els['day-subtitle'].innerHTML = isRest ? 'REST DAY <span>·</span> BOTH SESSIONS' : `${splitName} <span>·</span> ${exercises.length} EXERCISES`;
+  els['panel-kicker'].textContent = isRest ? 'FULL REST DAY' : selectedMode === 'morning' ? 'MORNING CORE SESSION' : 'AFTERNOON SESSION';
   els['morning-mode'].classList.toggle('active', selectedMode === 'morning');
   els['afternoon-mode'].classList.toggle('active', selectedMode === 'afternoon');
   els['morning-mode'].setAttribute('aria-pressed', String(selectedMode === 'morning'));
@@ -146,8 +169,9 @@ function render() {
   els['swipe-hint'].classList.toggle('hidden', isRest || currentIndex >= exercises.length);
 
   if (isRest) {
-    const nextDay = nextAfternoonWorkout(selectedDay);
-    els['next-session'].textContent = `${dayNames[nextDay].toUpperCase()} · ${splitNames[nextDay]}`;
+    const next = nextWorkoutAfter(date);
+    const nextDay = (next.date.getDay() + 6) % 7;
+    els['next-session'].textContent = `${dayNames[nextDay].toUpperCase()} · ${splitNames[next.splitIndex]}`;
     return;
   }
 
